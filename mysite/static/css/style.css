@@ -6,6 +6,56 @@ body {
   overflow-x: hidden;
 }
 
+#cart{
+border-style: solid;
+border-color: black;
+width: 100px;
+height: 600px;
+float:right;
+margin: 100px 0px 0px 0px;
+
+}
+
+#mainsection{
+  width:1500px;
+  height:900px;
+  margin: 30px auto 0px auto;
+  
+}
+
+#SnF{
+  width: 940px;
+  height: 130px;
+  border-style: solid;
+  border-color: blue;
+  margin: 30px auto 0px auto;
+}
+
+#searchbar{
+  width: 840px;
+  height: 50px;
+  border-style: solid;
+  border-color: black;
+  margin: 10px auto 0px auto;
+}
+
+#filter{
+  width: 840px;
+  height: 50px;
+  border-style: solid;
+  border-color: black;
+  margin: 10px auto 0px auto;
+
+}
+
+#products{
+  width: 940px;
+  height: 700px;
+  border-style: solid;
+  border-color: black;
+  margin: 20px auto 0px auto;
+}
+
 .layout_padding {
   padding: 90px 0;
 }

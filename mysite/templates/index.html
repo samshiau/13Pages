@@ -18,7 +18,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 
-        <title>Bostorek</title>
+        <title>13Bookstore</title>
 
         <!-- bootstrap core css -->
         <link
@@ -113,9 +113,7 @@
             <div id="mainsection">
                 <div id="cart">
                     shopping cart
- 
- 
-                 </div>
+                </div>
                 <div id="SnF">   <!-- search and filter  -->
                     <div id="searchbar">  <!-- search  -->
                         search bar goes here
@@ -128,14 +126,16 @@
                 </div>
             
                 <div id="products">   <!-- display product  -->
-                    products display
-            
+                    <p>How to get item from database?</p>
+                    {% for item in items %}
+                        <p>name: {{item.item_name}}, price {{item.item_price}}</p>
+                    {% endfor %}
                 </div>
                 
 
             
             </div>
-           
+            
             <!-- End Main features -->
         </div>
 

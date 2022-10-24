@@ -1,11 +1,16 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from .models import Item
+from .models import Item, Book
 
 
 def index(request):
-    return render(request, 'index.html')
+    # get data from database
+    items = Item.objects.all()
+    books = Book.objects.all()
+    
+    # sending the data to the template
+    return render(request, 'index.html', {'items': items, 'books': books})
 
 def register(request):
     if request.method == 'POST':

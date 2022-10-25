@@ -117,13 +117,23 @@
  
                  </div>
                 <div id="SnF">   <!-- search and filter  -->
-                    <div id="searchbar">  <!-- search  -->
-                        search bar goes here
-                    </div>
-            
-                    <div id="filter">  <!-- filter  -->
-                        filter
-                    </div>
+                    <form id="Searchbar" method="post">
+                        
+                            <input type="text" placeholder="Search product" value="" id="searchbarfield">
+                            <input type="submit" value="Search" id="searchbutton">  
+                        
+                    </form>
+                    
+                    <form id="filter">  <!-- filter  -->
+                        <label for="filterbutton">Filter your search:</label>
+                        <input type="button" value="Books" id="filterbutton">
+                        <input type="button" value="Office Supplies" id="filterbutton">
+                        <input type="button" value="Music" id="filterbutton">
+                        <input type="button" value="Movies" id="filterbutton">
+                        <input type="button" value="Gift Ideas" id="filterbutton">
+                        <input type="button" value="Figures/Toys" id="filterbutton">
+                        <input type="button" value="Snacks" id="filterbutton">       
+                    </form>
             
                 </div>
             

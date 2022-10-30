@@ -60,7 +60,7 @@ class payment_method(models.Model):
     cardNumber = RangeBigIntegerField(min_value=1000000000000000, max_value=9999999999999999)
     nameOnCard = models.CharField(max_length=20)
     exprDate = models.DateField()
-    
+
 class customer_order(models.Model):
     orderID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey(customer, on_delete=models.CASCADE)

@@ -1,5 +1,10 @@
 <h1>User Sign Up</h1>
 
+<!-- Error message -->
+{% for message in messages %}
+    <h5 class="alert-message">{{message}}</h2>
+{% endfor %}
+
 <form method="POST" action="register">
     {% csrf_token %}
     

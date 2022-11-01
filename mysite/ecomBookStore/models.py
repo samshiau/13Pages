@@ -3,6 +3,7 @@ from enum import unique
 from operator import mod
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 #extra functions
 class RangeIntegerField(models.IntegerField):
@@ -38,33 +39,13 @@ class RangeBigIntegerField(models.BigIntegerField):
         super().__init__(*args, **kwargs)
 
 # Create your models here.
-class customer(models.Model):
-    customerID = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=20)
-    nameF = models.CharField(max_length=20)
-    nameL = models.CharField(max_length=20)
-    address1 = models.CharField(max_length=50)
-    address2 = models.CharField(max_length=20)
-    birthday = models.DateField()
-
-class delivery_address(models.Model):
-    deliveryID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey(customer, on_delete=models.CASCADE)
-    deliveryAddress = models.CharField(max_length=50)
-
-
-class payment_method(models.Model):
-    paymentID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey(customer, on_delete=models.CASCADE)
-    cardNumber = RangeBigIntegerField(min_value=1000000000000000, max_value=9999999999999999)
-    nameOnCard = models.CharField(max_length=20)
-    exprDate = models.DateField()
-
 class customer_order(models.Model):
     orderID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey(customer, on_delete=models.CASCADE)
+    customerID = models.ForeignKey(User, on_delete=models.CASCADE)
     cart = models.BooleanField(default=True)
+
+    def __str__(self):
+        return str(self.orderID)
     
 class product(models.Model):
     productID = models.AutoField(primary_key=True)
@@ -74,23 +55,25 @@ class product(models.Model):
     currentStock = models.PositiveIntegerField()
     products = models.ManyToManyField(customer_order, through='order_item')
 
+    def __str__(self):
+        return self.productName
+
 class order_item(models.Model):
     orderID = models.ForeignKey(customer_order, on_delete=models.CASCADE)
     productID = models.ForeignKey(product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
-class review(models.Model):
-    reviewID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey(customer, on_delete=models.CASCADE)
-    productID = models.ForeignKey(product, on_delete=models.CASCADE)
-    ratingScore = RangeIntegerField(min_value=1, max_value=5)
-    comment = models.CharField(max_length=100)
+    def __str__(self):
+        return str(self.orderID) + " " + str(self.productID)
 
 class book(models.Model):
     productID = models.OneToOneField(product, on_delete=models.CASCADE, primary_key=True)
     ISBN = models.CharField(max_length=13, unique=True)
     Author = models.CharField(max_length=40)
     publisher = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.productID.productName
 
 class filter_tag(models.Model):
     # NOTE: the type will use following format (without number space and dash, case sensitive):
@@ -118,3 +101,6 @@ class filter_tag(models.Model):
     tagID = models.AutoField(primary_key=True)
     tagName = models.CharField(max_length=20)
     products = models.ManyToManyField(product)
+
+    def __str__(self):
+        return self.tagName

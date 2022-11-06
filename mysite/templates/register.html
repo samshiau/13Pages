@@ -1,25 +1,67 @@
-<h1>User Sign Up</h1>
+{% load static %}
 
-<!-- Error message -->
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap.css' %}"
+    />
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'css/register.css' %}" rel="stylesheet" />
+  </head>
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <span> 13Pages </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Error message -->
+  {% for message in messages %}
+    <h5 class="alert-message">{{message}}</h2>
+  {% endfor %}
+
+  <!-- Page Containor -->
+  <div class="containor-content">
+    <img src="/static/images/register_img.jpg" />
+    <!-- Page Content -->
+    <form class="form-content" method="POST" action="register">
+      {% csrf_token %}
+
+      <p>Username</p>
+      <input type="text" name="username" placeholder="Username" required />
+
+      <p>Email</p>
+      <input type="email" name="email" placeholder="Email" required />
+
+      <p>Password</p>
+      <input type="password" name="password" placeholder="Password" required />
+
+      <p>Confirm Password</p>
+      <input
+        type="password"
+        name="confirm_password"
+        placeholder="Confirm Password"
+        required
+      />
+      <input type="submit" name="submit" value="Sign Up" />
+    </form>
+  </div>
+</html>
+
+<!-- Error message 
 {% for message in messages %}
     <h5 class="alert-message">{{message}}</h2>
 {% endfor %}
-
-<form method="POST" action="register">
-    {% csrf_token %}
-    
-    <p>Username</p>
-    <input type="text" name="username" placeholder="Username" required />
-
-    <p>Email</p>
-    <input type="email" name="email" placeholder="Email" required />
-
-    <p>Password</p>
-    <input type="password" name="password" placeholder="Password" required />
-
-    <p>Confirm Password</p>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required />
-
-    <p></p>
-    <input type="submit" name="submit" value="Sign Up" />
-</form>

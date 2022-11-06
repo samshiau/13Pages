@@ -57,11 +57,7 @@
         required
       />
       <input type="submit" name="submit" value="Sign Up" />
+      <p class="bottom-msg"><a href="{% url 'login' %}">Have An Account?</a></p>
     </form>
   </div>
 </html>
-
-<!-- Error message 
-{% for message in messages %}
-    <h5 class="alert-message">{{message}}</h2>
-{% endfor %}

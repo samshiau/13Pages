@@ -8,6 +8,10 @@ def index(request):
     # sending the data to the template
     return render(request, 'index.html')
 
+def login(request):
+    return render(request, 'login.html')
+
+
 def register(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -33,3 +37,4 @@ def register(request):
     
     else: # GET request
         return render(request, 'register.html')
+    

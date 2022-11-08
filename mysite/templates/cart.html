@@ -1,0 +1,61 @@
+{% load static %}
+
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/bootstrap.css' %}"
+    />
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'css/cart.css' %}" rel="stylesheet" />
+  </head>
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <span> 13Pages </span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="cart-containor">
+    <div class="payment-info">
+      <h3>Shopping Cart</h3>
+      <form>
+        <div class="cart-address">
+          <h3>SHIPPING ADDRESS</h3>
+          <div class="address-items">
+            <input class="TEXT" type="text" name="address" />
+            <button type="button">CHANGE</button>
+          </div>
+        </div>
+        <div class="payment">
+          <h3>PAYMENT METHOD</h3>
+        </div>
+        <div class="card-details">
+          <h3>Enter Card Numbers*</h3>
+          <div class="details-items">
+            <input type="number" name="address" placeholder="12345" />
+            <button type="submit">PAY $0</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="cart-items">
+      <div class="elements">
+        <h3>Items</h3>
+        <div class="cart-temp">This is an element</div>
+      </div>
+    </div>
+  </div>
+</html>

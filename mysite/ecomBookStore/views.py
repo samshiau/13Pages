@@ -11,6 +11,9 @@ def index(request):
 def login(request):
     return render(request, 'login.html')
 
+def cart(request):
+    return render(request, 'cart.html')
+
 
 def register(request):
     if request.method == 'POST':

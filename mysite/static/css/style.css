@@ -74,6 +74,36 @@ border-style:hidden;
   margin: 20px auto 0px auto;
 }
 
+.CardSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ItemPadding {
+  padding: 10px;
+}
+
+.ItemCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 20vw;
+  height: 45vh;
+}
+
+.ItemCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.TextContainer {
+  padding: 2px 16px;
+}
+
+
+
+
 
 
 
@@ -151,7 +181,7 @@ a:focus {
 /*header section*/
 .hero_area {
   position: relative;
-  min-height: 100vh;
+  height: 650vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

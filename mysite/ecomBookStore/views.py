@@ -5,8 +5,10 @@ from .models import *
 
 
 def index(request):
-    # sending the data to the template
-    return render(request, 'index.html')
+    # get products from database
+    products = product.objects.all()
+    # products = products[:10]
+    return render(request, 'index.html', {'products': products})
 
 def login(request):
     return render(request, 'login.html')

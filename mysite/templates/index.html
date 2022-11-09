@@ -126,7 +126,27 @@
           </form>
         </div>
 
-        <div id="products"><!-- display product  --></div>
+        <!-- display product -->
+        <!-- replace img src to "{{product.productImage.url}}" after insert images-->
+        <div class="CardSection">
+          {% for product in products %}
+          <div class="ItemPadding">
+            <div class="ItemCard">
+              <div class="ImageDisplay">
+                <img src="{% static 'images/default-placeholder.png' %}" 
+                alt="product image" 
+                style="object-fit: cover; height: 30vh; width: 100%;"
+                />
+              </div>
+              <div class="TextContainer">
+                <h5>{{product.productName}}</h5>
+                <p>${{product.productPrice}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
       </div>
 
       <!-- End Main features -->
@@ -281,8 +301,7 @@
     <footer class="footer_section">
       <div class="container">
         <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By
-          <a href="https://html.design/">Free Html Templates</a>
+          &copy; <span id="displayYear"></span> All Rights Reserved By 13Pages
         </p>
       </div>
     </footer>

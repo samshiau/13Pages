@@ -49,11 +49,12 @@ class customer_order(models.Model):
     
 class product(models.Model):
     productID = models.AutoField(primary_key=True)
-    productName = models.CharField(max_length=20)
+    productName = models.CharField(max_length=100)
     productDesc = models.CharField(max_length=300)
     productPrice = models.DecimalField(max_digits=5, decimal_places=2)
     currentStock = models.PositiveIntegerField()
     products = models.ManyToManyField(customer_order, through='order_item')
+    productImage = models.ImageField(upload_to='product_images', blank=True)
 
     def __str__(self):
         return self.productName

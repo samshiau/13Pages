@@ -102,19 +102,22 @@
       <div id="mainsection">
         <div id="cart">shopping cart</div>
         <div id="SnF">
+
           <!-- search and filter  -->
-          <form id="Searchbar" method="post">
+          <form id="Searchbar" method="POST">
+            {% csrf_token %}
             <input
               type="text"
+              name="searchText"
               placeholder="Search product"
               value=""
               id="searchbarfield"
             />
-            <input type="submit" value="Search" id="searchbutton" />
+            <input type="submit" name="submit" id="searchbutton" />
           </form>
 
+          <!-- filter  -->
           <form id="filter">
-            <!-- filter  -->
             <label for="filterbutton">Filter your search:</label>
             <input type="button" value="Books" id="filterbutton" />
             <input type="button" value="Office Supplies" id="filterbutton" />

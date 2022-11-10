@@ -7,8 +7,16 @@ from .models import *
 def index(request):
     # get products from database
     products = product.objects.all()
-    # products = products[:10]
-    return render(request, 'index.html', {'products': products})
+    if request.method == 'POST':
+        search = request.POST['searchText']
+        print(search)
+        products = product.objects.filter(productName__icontains=search)
+        if products.count() == 0:
+            messages.info(request, 'No products found')
+            return redirect('index')
+        return render(request, 'index.html', {'products': products})
+    else:
+        return render(request, 'index.html', {'products': products})
 
 def login(request):
     return render(request, 'login.html')

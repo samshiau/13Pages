@@ -103,7 +103,7 @@
         <div id="cart">shopping cart</div>
         <div id="SnF">
 
-          <!-- search and filter  -->
+          <!-- search -->
           <form id="Searchbar" method="POST">
             {% csrf_token %}
             <input
@@ -115,17 +115,17 @@
             />
             <input type="submit" name="submit" id="searchbutton" />
           </form>
-
+          
           <!-- filter  -->
-          <form id="filter">
+          <form id="filter" method="POST" action="tagFilter">
             <label for="filterbutton">Filter your search:</label>
-            <input type="button" value="Books" id="filterbutton" />
-            <input type="button" value="Office Supplies" id="filterbutton" />
-            <input type="button" value="Music" id="filterbutton" />
-            <input type="button" value="Movies" id="filterbutton" />
-            <input type="button" value="Gift Ideas" id="filterbutton" />
-            <input type="button" value="Figures/Toys" id="filterbutton" />
-            <input type="button" value="Snacks" id="filterbutton" />
+            <input type="button" name="item_filter" value="Books"           id="filterbutton" />
+            <input type="button" name="item_filter" value="Office Supplies" id="filterbutton" />
+            <input type="button" name="item_filter" value="Music"           id="filterbutton" />
+            <input type="button" name="item_filter" value="Movies"          id="filterbutton" />
+            <input type="button" name="item_filter" value="Gift Ideas"      id="filterbutton" />
+            <input type="button" name="item_filter" value="Figures/Toys"    id="filterbutton" />
+            <input type="button" name="item_filter" value="Snacks"          id="filterbutton" />
           </form>
         </div>
 

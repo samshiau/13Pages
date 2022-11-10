@@ -38,15 +38,26 @@ border: none;
 
 #SnF{
   width: 940px;
-  height: 130px;
+  height: 15vh;
   border-style: solid;
   border-color: blue;
   margin: 30px auto 0px auto;
 }
 
 #filterbutton{
-border-style:hidden;
+  border-style:hidden;
+}
 
+#filterbutton:hover{
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+  color: rebeccapurple;
+}
+
+#filterbutton:focus{
+  border-style: solid;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 #searchbar{

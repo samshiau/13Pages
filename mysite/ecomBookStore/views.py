@@ -3,21 +3,24 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .models import *
 
-def tagFilter(request):
-    products = product.objects.all()
-    #if request.method == 'POST':
-
-
-
 def index(request):
-    # get products from database
     products = product.objects.all()
+    filter_tags = filter_tag.objects.all()
+
     if request.method == 'POST':
         search = request.POST['searchText']
         products = product.objects.filter(productName__icontains=search)
-        return render(request, 'index.html', {'products': products})
-    else:
-        return render(request, 'index.html', {'products': products})
+    elif request.method == 'GET':
+        tagFilter = request.GET.get('item_filter')
+
+        try:
+            product_filter_tag = filter_tag.objects.get(tagName = tagFilter)
+            products = product_filter_tag.products.all()
+        except:
+            print("Error: No filter tag found")
+            pass
+
+    return render(request, 'index.html', {'products': products, 'filter_tags': filter_tags})
 
 def login(request):
     return render(request, 'login.html')

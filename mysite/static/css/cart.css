@@ -5,7 +5,8 @@
 .cart-containor {
     margin-top: 30px;
     display: flex;
-    gap: 300px
+    gap: 300px;
+    margin-left: 70px;
 }
 .payment-info {
     display: flex;
@@ -67,14 +68,18 @@
 }
 
 .elements {
+    display:flex;
+    gap: 15px;
+    flex-direction: column;
     border: solid;
     border-color: #E6E6E6;
-    min-width: 350px;
     height: 500px;
     border-radius: 20px;
     padding-left: 10px;
     font-size: 19px;
     font-family: sans-serif;
+    max-width: 500px;
+
 }
 
 .cart-temp {
@@ -83,9 +88,8 @@
     border-color: None;
     border-radius: 25px;
     padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
     padding-right: 10x;
+    font-weight: bold;
 }
 
 

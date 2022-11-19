@@ -46,15 +46,17 @@
           <h3>Enter Card Numbers*</h3>
           <div class="details-items">
             <input type="number" name="address" placeholder="12345" />
-            <button type="submit">PAY $0</button>
+            <button type="submit">PAY {{total_amnt}}</button>
           </div>
         </div>
       </form>
     </div>
     <div class="cart-items">
       <div class="elements">
-        <h3>Items</h3>
-        <div class="cart-temp">This is an element</div>
+        <h3>Items (<span class="cart-list">{{request.session.cartdata|length}}</span>)</h3>
+        {% for product.name, item in cart_data.items %}
+        <div class="cart-temp">{{item.ProductName}} Price: ${% widthratio item.price 1 item.qty %}.00 Qty: {{item.qty}}</div>
+        {% endfor %}
       </div>
     </div>
   </div>

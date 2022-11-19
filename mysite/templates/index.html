@@ -3,6 +3,7 @@
 <html>
   <head>
     <!-- Basic -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Mobile Metas -->
@@ -79,7 +80,7 @@
                   <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+                  <a class="nav-link" href="{% url 'cart' %}">Cart (<span class="cart-list">{{request.session.cartdata|length}}</span>)</a>
                 </li>
               </ul>
               <from class="search_form">
@@ -101,7 +102,7 @@
 
       <div id="mainsection">
         <div id="cart">shopping cart</div>
-        
+
         <div id="SnF">
           <!-- search -->
           <form id="Searchbar" method="POST">
@@ -115,7 +116,7 @@
             />
             <input type="submit" name="submit" id="searchbutton" />
           </form>
-          
+
           <!-- filter  -->
           <form id="filter" method="GET">
             {% for tag in filter_tags %}
@@ -130,22 +131,21 @@
           {% for product in products %}
           <div class="ItemPadding">
             <div class="ItemCard">
-              
+
               <div class="ImageDisplay">
-                <img src="{% static 'images/sample-icon.jpg' %}" 
-                alt="product image" 
+                <img src="{% static 'images/sample-icon.jpg' %}"
+                alt="product image"
                 style="object-fit: cover; height: 30vh; width: 100%; border-radius: 20px;"
                 />
               </div>
-              
+
               <div class="TextContainer">
                 <h5>{{product.productName}}</h5>
                 <p>${{product.productPrice}}</p>
               </div>
-              
               <div class="ButtonContainer">
-                <button class="CardButton">View</button>
-                <button class="CardButton">Add to Cart</button>
+                <button class="CardButton" id="{{product.productName}}">View</button>
+                <button class="CardButton" id="{{product.productName}}">Add to Cart</button>
               </div>
 
             </div>
@@ -238,6 +238,29 @@
     <!-- footer section -->
 
     <!-- jQery -->
+
+    <!--- logic for sending an item to the cart --->
+    <script>
+      $("button").click(function() {
+        var _vm =$(this);
+        var _productName = this.id
+        $.ajax({
+          url:'/add-to-cart',
+          data:{
+            'name': _productName
+          },
+          dataype:'json',
+          beforeSend:function(){
+            _vm.attr('disabled',true);
+          },
+          success:function(res){
+            console.log(res);
+            $(".cart-list").text(res.totalitems);
+            _vm.attr('disabled',false);
+          }
+      });
+    });
+    </script>
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <!-- bootstrap js -->
     <script src="{% static 'js/bootstrap.js' %}"></script>

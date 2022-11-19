@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from .models import *
@@ -40,8 +41,44 @@ def login(request):
     return render(request, 'login.html')
 
 
+# add to cart
+def add_to_cart(request):
+    get_product = product.objects.filter(productName=request.GET['name']).values()[0]
+    cart_p = dict()
+    cart_p[str(request.GET['name'])] = {
+        'ProductName': get_product['productName'],
+        'price': str(get_product['productPrice']),
+        'qty': 1
+    }
+
+    if 'cartdata' in request.session:
+        if str(request.GET['name']) in request.session['cartdata']:
+            cart_data = request.session['cartdata']
+
+            cart_data[str(request.GET['name'])]['qty'] += 1
+            cart_data.update(cart_data)
+            request.session['cartdata'] = cart_data
+        else:
+            cart_data = request.session['cartdata']
+            cart_data.update(cart_p)
+            request.session['cartdata'] = cart_data
+    else:
+        request.session['cartdata'] = cart_p
+
+    return JsonResponse({'data': request.session['cartdata'], 'totalitems': len(request.session['cartdata'])})
+
+
 def cart(request):
-    return render(request, 'cart.html')
+    total_amount = 0
+    for p_name, item in request.session['cartdata'].items():
+        total_amount += int(item['qty']) * float(item['price'])
+
+    total_amount *= 1.0825  # Sales tax in Texas
+
+    total_amount = "{:.2f}".format(total_amount)
+    return render(request, 'cart.html',
+                  {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
+                   'total_amnt': total_amount})
 
 
 def register(request):

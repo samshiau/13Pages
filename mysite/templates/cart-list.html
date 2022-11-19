@@ -1,0 +1,80 @@
+{% load static %}
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'css/bootstrap.css' %}"
+    />
+    <!-- font awesome style -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <!-- responsive style -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet"/>
+
+    <link href="{% static 'css/cart.css' %}" rel="stylesheet"/>
+</head>
+<!-- header section strats -->
+<header class="header_section">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <span> 13Pages </span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<div class="cart-containor">
+    <div class="payment-info">
+        <h3>Shopping Cart</h3>
+        <form>
+            <div class="cart-address">
+                <h3>SHIPPING ADDRESS</h3>
+                <div class="address-items">
+                    <input class="TEXT" type="text" name="address"/>
+                    <button type="button">CHANGE</button>
+                </div>
+            </div>
+            <div class="payment">
+                <h3>PAYMENT METHOD</h3>
+            </div>
+            <div class="card-details">
+                <h3>Enter Card Numbers*</h3>
+                <div class="details-items">
+                    <input type="number" name="address" placeholder="12345"/>
+                    <button type="submit">PAY ${{total_amnt}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="cart-items">
+        <div class="elements">
+            <h3>Items (<span class="cart-list">{{totalitems}}</span>)</h3>
+            {% for product.name, item in cart_data.items %}
+                <table class="cart-temp">
+                    <tr>
+                        <td>
+                            {{item.ProductName}}
+                        </td>
+                        <td>
+                            Price: ${% widthratio item.price 1 item.qty %}.00
+                        </td>
+                        <td>Qty: {{item.qty}}</td>
+                        <td>
+                            <button class="delete-button-style delete-item" data-item="{{item.ProductName}}">DELETE
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/cart.js' %}"></script>
+</html>

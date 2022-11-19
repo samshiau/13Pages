@@ -12,4 +12,5 @@ urlpatterns = [
                   path('cart', views.cart, name='cart'),
                   path('admin', admin.site.urls),
                   path('add-to-cart', views.add_to_cart, name="add-to-cart"),
+                  path('delete-from-cart', views.delete_cart_item, name="delete-from-cart'"),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  # image config

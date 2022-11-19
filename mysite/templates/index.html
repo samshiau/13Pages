@@ -144,8 +144,8 @@
                 <p>${{product.productPrice}}</p>
               </div>
               <div class="ButtonContainer">
-                <button class="CardButton" id="{{product.productName}}">View</button>
-                <button class="CardButton" id="{{product.productName}}">Add to Cart</button>
+                <button class="CardButton view-product" id="{{product.productName}}">View</button>
+                <button class="CardButton add-to-cart" id="{{product.productName}}">Add to Cart</button>
               </div>
 
             </div>
@@ -240,27 +240,7 @@
     <!-- jQery -->
 
     <!--- logic for sending an item to the cart --->
-    <script>
-      $("button").click(function() {
-        var _vm =$(this);
-        var _productName = this.id
-        $.ajax({
-          url:'/add-to-cart',
-          data:{
-            'name': _productName
-          },
-          dataype:'json',
-          beforeSend:function(){
-            _vm.attr('disabled',true);
-          },
-          success:function(res){
-            console.log(res);
-            $(".cart-list").text(res.totalitems);
-            _vm.attr('disabled',false);
-          }
-      });
-    });
-    </script>
+    <script src="{% static 'js/cart.js' %}"></script>
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
     <!-- bootstrap js -->
     <script src="{% static 'js/bootstrap.js' %}"></script>

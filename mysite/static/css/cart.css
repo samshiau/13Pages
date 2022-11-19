@@ -5,8 +5,8 @@
 .cart-containor {
     margin-top: 30px;
     display: flex;
-    gap: 300px;
-    margin-left: 70px;
+    gap: 200px;
+    margin-left: 50px;
 }
 .payment-info {
     display: flex;
@@ -78,7 +78,7 @@
     padding-left: 10px;
     font-size: 19px;
     font-family: sans-serif;
-    max-width: 500px;
+    max-width: 600px;
 
 }
 
@@ -92,4 +92,22 @@
     font-weight: bold;
 }
 
+.delete-button-style {
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.cart-items {
+    padding-right: 50px;
+}
+
+th, td {
+    width:150px;
+    text-align:center;
+    padding:5px
+}
 

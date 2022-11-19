@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 
 from .models import *
 
@@ -43,6 +44,7 @@ def login(request):
 
 # add to cart
 def add_to_cart(request):
+    global length
     get_product = product.objects.filter(productName=request.GET['name']).values()[0]
     cart_p = dict()
     cart_p[str(request.GET['name'])] = {
@@ -68,14 +70,33 @@ def add_to_cart(request):
     return JsonResponse({'data': request.session['cartdata'], 'totalitems': len(request.session['cartdata'])})
 
 
-def cart(request):
-    total_amount = 0
-    for p_name, item in request.session['cartdata'].items():
-        total_amount += int(item['qty']) * float(item['price'])
+# Delete Cart Item
+def delete_cart_item(request):
+    product_name = str(request.GET['name'])
+    if 'cartdata' in request.session:
+        if str(request.GET['name']) in request.session['cartdata']:
+            cart_data = request.session['cartdata']
+            del request.session['cartdata'][product_name]
+            request.session['cartdata'] = cart_data
 
-    total_amount *= 1.0825  # Sales tax in Texas
+    total_amount = 0.0
+    for p_name, item in request.session['cartdata'].items():
+        total_amount += int(item['qty']) * float(item['price']) * 1.0825
 
     total_amount = "{:.2f}".format(total_amount)
+    t = render_to_string('cart-list.html',
+                         {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
+                          'total_amnt': total_amount})
+    return JsonResponse({'data': t})
+
+
+def cart(request):
+    total_amount = 0.0
+    for p_name, item in request.session['cartdata'].items():
+        total_amount += int(item['qty']) * float(item['price']) * 1.0825
+
+    total_amount = "{:.2f}".format(total_amount)
+
     return render(request, 'cart.html',
                   {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
                    'total_amnt': total_amount})

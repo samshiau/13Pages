@@ -33,11 +33,11 @@
     <div class="cart-containor">
         <div class="payment-info">
             <h3>Shopping Cart</h3>
-            <form>
+            <form  method="POST" action="pay-from-cart">
                 <div class="cart-address">
                     <h3>SHIPPING ADDRESS</h3>
                     <div class="address-items">
-                        <input class="TEXT" type="text" name="address"/>
+                        <input class="TEXT" id='address' type="text" name="address" required>
                         <button type="button">CHANGE</button>
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                 <div class="card-details">
                     <h3>Enter Card Numbers*</h3>
                     <div class="details-items">
-                        <input type="number" name="address" placeholder="12345"/>
-                        <button type="submit">PAY ${{total_amnt}}</button>
+                        <input type="number" name="address" id='numbers' placeholder="12345"/>
+                        <button class="pay-style pay-button"type="submit">PAY ${{total_amnt}}</button>
                     </div>
                 </div>
             </form>

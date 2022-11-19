@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
+from django.contrib.sessions.models import Session
 
 from .models import *
 
@@ -100,6 +101,28 @@ def cart(request):
     return render(request, 'cart.html',
                   {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
                    'total_amnt': total_amount})
+
+
+def checkout_cart_items(request):
+    product_name = list()
+    for p_name, item in request.session['cartdata'].items():
+        product_name.append(p_name)
+
+    if 'cartdata' in request.session:
+        for name in product_name:
+            cart_data = request.session['cartdata']
+            del request.session['cartdata'][name]
+            request.session['cartdata'] = cart_data
+
+    total_amount = 0.0
+    for p_name, item in request.session['cartdata'].items():
+        total_amount += int(item['qty']) * float(item['price']) * 1.0825
+
+    total_amount = "{:.2f}".format(total_amount)
+    t = render_to_string('cart-list.html',
+                         {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
+                          'total_amnt': total_amount})
+    return JsonResponse({'data': t})
 
 
 def register(request):

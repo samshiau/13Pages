@@ -39,4 +39,19 @@
                 $("#cartList").html(res.data);
               }
           });
+        } else if (class_name[1] == 'pay-button') {
+            var _vm =$(this);
+           $.ajax({
+                  url:'/pay-from-cart',
+                  dataype:'json',
+                  beforeSend:function(){
+                    _vm.attr('disabled',true);
+                  },
+                  success:function(res){
+                    console.log(res);
+                    $(".cart-list").text(res.totalitems);
+                    _vm.attr('disabled',false);
+                    $("#cartList").html(res.data);
+                  }
+              });
         }});

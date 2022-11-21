@@ -54,4 +54,23 @@
                     $("#cartList").html(res.data);
                   }
               });
+        } else if (class_name[0] == 'screen-reader') {
+            let msg = new SpeechSynthesisUtterance();
+            let voices = speechSynthesis.getVoices();
+            msg.voice = voices[0];
+            let tags = document.querySelectorAll('h1, h2, h3, h4, h5, p, span, button, input, td, tr, a');
+            tags.forEach( (tag) => {
+                tag.addEventListener('click', (e) => {
+                    msg.text = e.target.innerText;
+                    tag.style.backgroundColor = "yellow";
+                    speechSynthesis.speak(msg);
+
+                    let interval = setInterval(() => {
+                        if(!speechSynthesis.speaking) {
+                            tag.style.removeProperty('background-color');
+                            clearInterval(interval);
+                        }
+                    }, 100);
+                });
+            });
         }});

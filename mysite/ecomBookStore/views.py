@@ -88,7 +88,7 @@ def delete_cart_item(request):
     t = render_to_string('cart-list.html',
                          {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
                           'total_amnt': total_amount})
-    return JsonResponse({'data': t})
+    return JsonResponse({'data': t, 'totalitems': len(request.session['cartdata'])})
 
 
 def cart(request):

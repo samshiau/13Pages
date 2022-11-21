@@ -957,4 +957,13 @@ a:focus {
 .bottom-msg {
   color:#ababab;
 }
+
+.screen-reader {
+  margin-top: 8px;
+  background-color: #44b89d;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  font-weight: bold;
+}
 /*# sourceMappingURL=style.css.map */

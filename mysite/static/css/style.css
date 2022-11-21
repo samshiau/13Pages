@@ -7,8 +7,11 @@ body {
 }
 
 #searchbarfield{
-width:650px;
-height:40px;
+  width:650px;
+  height:40px;
+  border-radius: 50px;
+  border-color: #063547;
+  padding-left: 10px;
 }
 
 #cart{
@@ -21,8 +24,13 @@ margin: 100px 0px 0px 0px;
 }
 
 #searchbutton{
-height:40px;
-width: 70px;
+  height: 40px;
+  width: 70px;
+  background-color: #44b89d;
+  border: none;
+  font-weight: bold;
+  border-radius: 20px;
+  color: white;
 }
 
 #Searchbar{
@@ -31,18 +39,18 @@ border: none;
 }
 
 #mainsection{
-  width:1500px;
-  height:900px;
-  margin: 30px auto 0px auto;
+  max-width:1500px;
+  margin: 10px auto;
+  /**margin: auto; **
+   */
+
 }
 
 #SnF{
-  width: 940px;
+  max-width: 940px;
   height: 20vh;
-  overflow: scroll;
-  border-style: solid;
-  border-color: blue;
-  margin: 30px auto 0px auto;
+  /*overflow: visible; */
+  margin: 30px auto 20px auto;
 }
 
 #filterbutton{
@@ -65,7 +73,6 @@ border: none;
 #searchbar{
   width: 840px;
   height: 50px;
-  border-style: solid;
   border-color: black;
   margin: 10px auto 0px auto;
 }
@@ -233,11 +240,11 @@ a:focus {
 .hero_area {
   position: relative;
   min-height: 200vh;
-  max-height: 500vh;
-  overflow: scroll;
+  /*max-height: 500vh;
+  overflow: scroll; */
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  /* display: flex; */
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -933,12 +940,12 @@ a:focus {
 /* footer section*/
 .footer_section {
   position: relative;
-  background-color: #ffffff;
   text-align: center;
+  background-color: #063547
 }
 
 .footer_section p {
-  color: #063547;
+  color: white;
   padding: 25px 0;
   margin: 0;
 }

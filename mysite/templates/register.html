@@ -1,6 +1,6 @@
 {% load static %}
 
-<html>
+<html lang="en-US">
   <head>
     <link
       rel="stylesheet"
@@ -30,12 +30,15 @@
 
   <!-- Error message -->
   {% for message in messages %}
-    <h5 class="alert-message">{{message}}</h2>
+  <h2>class="alert-message">{{ message }}</h2>
   {% endfor %}
 
   <!-- Page Containor -->
   <div class="containor-content">
-    <img src="/static/images/register_img.jpg" />
+    <img
+      src="/static/images/register_img.jpg"
+      alt="picture of kid in space with a book"
+    />
     <!-- Page Content -->
     <form class="form-content" method="POST" action="register">
       {% csrf_token %}

@@ -29,4 +29,6 @@ Then you should see something like this:
   Starting development server at http://127.0.0.1:8000/
   Quit the server with CONTROL-C.
 ```
-Finally, open your browser and go to `http://127.0.0.1:8000`, you should be able to see the website
+Finally, open your browser and go to `http://127.0.0.1:8000`, you should be able to see the website\
+
+If you have problem with running the project, please email Samuel.Shiau@my.utsa.edu for information.

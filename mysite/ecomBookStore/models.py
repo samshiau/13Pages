@@ -42,6 +42,7 @@ class RangeBigIntegerField(models.BigIntegerField):
 class customer_order(models.Model):
     orderID = models.AutoField(primary_key=True)
     customerID = models.ForeignKey(User, on_delete=models.CASCADE)
+    total = models.DecimalField(max_digits=6, decimal_places=2)
     cart = models.BooleanField(default=True)
 
     def __str__(self):
@@ -63,6 +64,7 @@ class order_item(models.Model):
     orderID = models.ForeignKey(customer_order, on_delete=models.CASCADE)
     productID = models.ForeignKey(product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
+    subtotal = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
         return str(self.orderID) + " " + str(self.productID)

@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from django.contrib.sessions.models import Session
 
 from .models import *
 
@@ -93,14 +92,17 @@ def delete_cart_item(request):
 
 def cart(request):
     total_amount = 0.0
-    for p_name, item in request.session['cartdata'].items():
-        total_amount += int(item['qty']) * float(item['price']) * 1.0825
+    if 'cartdata' in request.session:
+        for p_name, item in request.session['cartdata'].items():
+            total_amount += int(item['qty']) * float(item['price']) * 1.0825
+
+        total_amount = "{:.2f}".format(total_amount)
+        return render(request, 'cart.html',
+                      {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
+                       'total_amnt': total_amount})
 
     total_amount = "{:.2f}".format(total_amount)
-
-    return render(request, 'cart.html',
-                  {'cart_data': request.session['cartdata'], 'totalitems': len(request.session['cartdata']),
-                   'total_amnt': total_amount})
+    return render(request, 'cart.html', {'total_amnt': total_amount, 'totalitems': 0})
 
 
 def checkout_cart_items(request):

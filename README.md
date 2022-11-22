@@ -16,7 +16,7 @@ To verify everything is installed, please test these in your terminal, you shoul
   // you should see Django, Pillow, and other packages after entering pip list
 ```
 \
-Change to correct directory, run `ls` and you should see a file called **`manage.py`** means you are in the correct place :)\
+Change to correct directory (under "mysite" floder), run `ls` and you should see a file called **`manage.py`** means you are in the correct place :)\
 To start the server, run `python3 manage.py runserver` in the terminal.\
 Then you should see something like this:
 ```

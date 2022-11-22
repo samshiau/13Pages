@@ -1,190 +1,211 @@
 {% load static %}
 
 <html lang="en-US">
-  <head>
-    <!-- Basic -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Mobile Metas -->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <!-- Site Metas -->
-    <link
-      rel="icon"
-      href="{% static 'images/favicon.png' %}"
-      type="image/gif"
-    />
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <head>
+        <!-- Basic -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile Metas -->
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Site Metas -->
+        <link
+            rel="icon"
+            href="{% static 'images/favicon.png' %}"
+            type="image/gif" />
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 
-    <title>13Bookstore</title>
+        <title>13Bookstore</title>
 
-    <!-- bootstrap core css -->
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'css/bootstrap.css' %}"
-    />
-    <!-- font awesome style -->
-    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+        <!-- bootstrap core css -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{% static 'css/bootstrap.css' %}" />
+        <!-- font awesome style -->
+        <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
-  </head>
+        <!-- Custom styles for this template -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+        
+        <!-- responsive style -->
+        <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    </head>
 
-  <body>
-    <div class="hero_area">
-      <!-- header section strats -->
-      <header class="header_section">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="{% url 'index' %}">
-              <span> 13Pages </span>
-            </a>
+    <body>
+        <div class="hero_area">
+            <!-- header section stats -->
+            <header class="header_section">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg custom_nav-container">
+                        <a class="navbar-brand" href="{% url 'index' %}">
+                            <span> 13Pages </span>
+                        </a>
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class=""> </span>
-            </button>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class=""> </span>
+                        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link pl-lg-0" href="{% url 'index' %}">
-                    Home<span class="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'cart' %}"
-                    >Cart (<span class="cart-list"
-                      >{{ request.session.cartdata|length }}</span
-                    >)</a
-                  >
-                </li>
-                  <li>
-                      <button class="screen-reader" id="screen-on">Screen Reader</button>
-                  </li>
-              </ul>
+                        <div
+                            class="collapse navbar-collapse"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                
+                                <li class="nav-item active">
+                                    <a class="nav-link pl-lg-0" href="{% url 'index' %}">
+                                        Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                </li>
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'cart' %}">Cart 
+                                        (<span class="cart-list"> {{ request.session.cartdata|length}}</span>)
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <button
+                                        class="screen-reader"
+                                        id="screen-on">
+                                        Screen Reader
+                                    </button>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <!-- end header section -->
+            <!-- Main features -->
+
+            <div id="mainsection">
+                <div id="SnF">
+                    <!-- search -->
+                    <form id="Searchbar" method="POST">
+                        {% csrf_token %}
+                        <input
+                            type="text"
+                            name="searchText"
+                            placeholder="Search product"
+                            value=""
+                            id="searchbarfield" />
+
+                        <input type="submit" name="submit" id="searchbutton" />
+                    </form>
+
+                    <!-- filter  -->
+                    <form id="filter" method="GET">
+                        {% for tag in filter_tags %}
+                        <input
+                            type="submit"
+                            name="item_filter"
+                            value="{{ tag.tagName }}"
+                            id="filterbutton" />
+                        {% endfor %}
+                    </form>
+                </div>
+
+                <!-- display product -->
+                <!-- replace img src to "{{product.productImage.url}}" after insert images-->
+                <div class="CardSection">
+                    {% for product in products %}
+                    <div class="ItemPadding">
+                        <div class="ItemCard">
+                            <!-- top area -->
+                            <div id="{{product.productID}}_top_area" style="height: 55vh;">
+                            
+                                <div class="ImageDisplay">
+                                    <img
+                                        src="{% static 'images/sample-icon.jpg' %}"
+                                        alt="product image"
+                                        style="
+                                            object-fit: cover;
+                                            height: 30vh;
+                                            width: 100%;
+                                            border-radius: 20px;
+                                        " />
+                                </div>
+
+                                <div class="TextContainer">
+                                    <h5>{{ product.productName }}</h5>
+                                    <p>${{ product.productPrice }}</p>
+                                </div>
+
+                                <div class="ButtonContainer">
+                                    <button
+                                        class="CardButton view-product"
+                                        id="{{product.productID}}">
+                                        View Detail
+                                    </button>
+                                    <button
+                                        class="CardButton add-to-cart"
+                                        id="{{ product.productName }}">
+                                        Add to Cart
+                                    </button>
+                                </div>
+
+                            </div> <!-- end top_area -->
+
+                            <!-- bottom area -->
+                            <div class="button_area">
+                                <div class="ProductDescription">
+                                    <p>{{ product.productDesc }}</p>
+                                </div>
+
+                                <button class="CardButton back" id="{{product.productID}}">
+                                    Back
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-          </nav>
-        </div>
-      </header>
-      <!-- end header section -->
-      <!-- Main features -->
-
-      <div id="mainsection">
-        <div id="SnF">
-          <!-- search -->
-          <form id="Searchbar" method="POST">
-            {% csrf_token %}
-            <input
-              type="text"
-              name="searchText"
-              placeholder="Search product"
-              value=""
-              id="searchbarfield"
-
-            />
-
-            <input type="submit" name="submit" id="searchbutton" />
-          </form>
-
-          <!-- filter  -->
-          <form id="filter" method="GET">
-            {% for tag in filter_tags %}
-            <input
-              type="submit"
-              name="item_filter"
-              value="{{ tag.tagName }}"
-              id="filterbutton"
-            />
-            {% endfor %}
-          </form>
+            <!-- End Main features -->
         </div>
 
-        <!-- display product -->
-        <!-- replace img src to "{{product.productImage.url}}" after insert images-->
-        <div class="CardSection">
-          {% for product in products %}
-          <div class="ItemPadding">
-            <div class="ItemCard">
-              <div class="ImageDisplay">
-                <img
-                  src="{% static 'images/sample-icon.jpg' %}"
-                  alt="product image"
-                  style="
-                    object-fit: cover;
-                    height: 30vh;
-                    width: 100%;
-                    border-radius: 20px;
-                  "
-                />
-              </div>
+        <!-- end info section -->
 
-              <div class="TextContainer">
-                <h5>{{ product.productName }}</h5>
-                <p>${{ product.productPrice }}</p>
-              </div>
-              <div class="ButtonContainer">
-                <button
-                  class="CardButton view-product"
-                  id="{{ product.productName }}"
-                >
-                  View
-                </button>
-                <button
-                  class="CardButton add-to-cart"
-                  id="{{ product.productName }}"
-                >
-                  Add to Cart
-                </button>
-              </div>
+        <!-- footer section -->
+        <footer class="footer_section">
+            <div class="container">
+                <p>
+                    &copy; <span id="displayYear"></span> All Rights Reserved By
+                    13Pages
+                </p>
             </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-      <!-- End Main features -->
-    </div>
+        </footer>
+        <!-- footer section -->
 
-    <!-- end info section -->
+        <!-- jQery -->
+        <!--- logic for sending an item to the cart --->
+        <script src="{% static 'js/cart.js' %}"></script>
+        <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 
-    <!-- footer section -->
-    <footer class="footer_section">
-      <div class="container">
-        <p>
-          &copy; <span id="displayYear"></span> All Rights Reserved By 13Pages
-        </p>
-      </div>
-    </footer>
-    <!-- footer section -->
+        <!-- bootstrap js -->
+        <script src="{% static 'js/bootstrap.js' %}"></script>
 
-    <!-- jQery -->
-    <!--- logic for sending an item to the cart --->
-    <script src="{% static 'js/cart.js' %}"></script>
-    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-    <!-- bootstrap js -->
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <!-- custom js -->
-    <script src="{% static 'js/custom.js' %}"></script>
-    <!-- Google Map -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
-    <!-- End Google Map -->
-  </body>
+        <!-- custom js -->
+        <script src="{% static 'js/custom.js' %}"></script>
+
+        <!--View product-->
+        <script src="{% static 'js/viewProduct.js' %}"></script>
+    </body>
 </html>

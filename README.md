@@ -1,5 +1,6 @@
 # User-Interface
-# NOTE You must have internet connectivity to run the application
+***NOTE You must have internet connectivity to run the application***\
+\
 To run this project, please make sure you have Django 4.1 and Python 3.9+ installed.\
 \
 To install Python, please click this ***[LINK](https://www.python.org/downloads/)***\

@@ -18,74 +18,74 @@
 
     <link href="{% static 'css/cart.css' %}" rel="stylesheet" />
   </head>
-<!-- header section strats -->
-      <header class="header_section">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="{% url 'index' %}">
-              <span> 13Pages </span>
-            </a>
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="{% url 'index' %}">
+          <span> 13Pages </span>
+        </a>
 
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class=""> </span>
-            </button>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class=""> </span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link pl-lg-0" href="{% url 'index' %}">
-                    Home<span class="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'cart' %}"
-                    >Cart (<span class="cart-list"
-                      >{{ totalitems }}</span
-                    >)</a
-                  >
-                </li>
-                  <li>
-                      <button class="screen-reader" id="screen-on">Screen Reader</button>
-                  </li>
-              </ul>
-            </div>
-          </nav>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link pl-lg-0" href="{% url 'index' %}">
+                Home<span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'cart' %}"
+                >Cart (<span class="cart-list">{{ totalitems }}</span>)</a
+              >
+            </li>
+            <li>
+              <button class="screen-reader" id="screen-on">
+                Screen Reader
+              </button>
+            </li>
+          </ul>
         </div>
-      </header>
+      </nav>
+    </div>
+  </header>
 
   <div class="cart-containor">
     <div class="payment-info">
       <h3>Shopping Cart</h3>
-      <form>
-        <div class="cart-address">
-          <h3>SHIPPING ADDRESS</h3>
-          <div class="address-items">
-            <input class="TEXT" type="text" name="address" />
-            <button type="button">CHANGE</button>
-          </div>
+      <div class="cart-address">
+        <h3>SHIPPING ADDRESS</h3>
+        <div class="address-items">
+          <input class="TEXT" type="text" name="address" />
+          <button type="button">CHANGE</button>
         </div>
-        <div class="payment">
-          <h3>PAYMENT METHOD</h3>
+      </div>
+      <div class="payment">
+        <h3>PAYMENT METHOD</h3>
+      </div>
+      <div class="card-details">
+        <h3>Enter Card Numbers*</h3>
+        <div class="details-items">
+          <input type="number" name="address" placeholder="12345" />
+          <button class="pay-style pay-button" type="submit">
+            PAY ${{total_amnt}}
+          </button>
         </div>
-        <div class="card-details">
-          <h3>Enter Card Numbers*</h3>
-          <div class="details-items">
-            <input type="number" name="address" placeholder="12345" />
-            <button type="submit">PAY ${{total_amnt}}</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
     <div class="cart-items">
       <div class="elements">
